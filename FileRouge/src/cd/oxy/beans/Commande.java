@@ -6,9 +6,9 @@ public class Commande {
     private String date;
     private Double montant;
     private String modePaiement;
-    private String stautPaiement;
-    private String modeLivarison;
-    private String statutLivarison;
+    private String statutPaiement;
+    private String modeLivraison;
+    private String statutLivraison;
 
     // getter and setter
     public Client getClient() {
@@ -43,28 +43,28 @@ public class Commande {
         this.modePaiement = modePaiement;
     }
 
-    public String getStautPaiement() {
-        return stautPaiement;
+    public String getStatutPaiement() {
+        return statutPaiement;
     }
 
-    public void setStautPaiement( String stautPaiement ) {
-        this.stautPaiement = stautPaiement;
+    public void setStatutPaiement( String statutPaiement ) {
+        this.statutPaiement = statutPaiement;
     }
 
-    public String getModeLivarison() {
-        return modeLivarison;
+    public String getModeLivraison() {
+        return modeLivraison;
     }
 
-    public void setModeLivarison( String modeLivarison ) {
-        this.modeLivarison = modeLivarison;
+    public void setModeLivraison( String modeLivraison ) {
+        this.modeLivraison = modeLivraison;
     }
 
-    public String getStatutLivarison() {
-        return statutLivarison;
+    public String getStatutLivraison() {
+        return statutLivraison;
     }
 
-    public void setStatutLivarison( String statutLivarison ) {
-        this.statutLivarison = statutLivarison;
+    public void setStatutLivraison( String statutLivraison ) {
+        this.statutLivraison = statutLivraison;
     }
 
 }
