@@ -15,7 +15,15 @@ import cd.oxy.beans.Client;
  */
 @WebServlet( "/CreationClient" )
 public class CreationClient extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private static final long   serialVersionUID = 1L;
+
+    private static final String ATT_NOM          = "nomClient";
+    private static final String ATT_PRENOM       = "prenomClient";
+    private static final String ATT_ADRESSE      = "adresseClient";
+    private static final String ATT_TELEPHONE    = "telephoneClient";
+    private static final String ATT_EMAIL        = "emailClient";
+
+    private static final String VUE              = "/afficherClient.jsp";
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -27,11 +35,11 @@ public class CreationClient extends HttpServlet {
          * Récupération des données saisies, envoyées en tant que paramètres de
          * la requête GET générée à la validation du formulaire
          */
-        String nom = request.getParameter( "nomClient" );
-        String prenom = request.getParameter( "prenomClient" );
-        String adresse = request.getParameter( "adresseClient" );
-        String telephone = request.getParameter( "telephoneClient" );
-        String email = request.getParameter( "emailClient" );
+        String nom = request.getParameter( ATT_NOM );
+        String prenom = request.getParameter( ATT_PRENOM );
+        String adresse = request.getParameter( ATT_ADRESSE );
+        String telephone = request.getParameter( ATT_TELEPHONE );
+        String email = request.getParameter( ATT_EMAIL );
 
         String Message;
         /*
@@ -61,6 +69,6 @@ public class CreationClient extends HttpServlet {
         request.setAttribute( "client", client );
 
         /* Transmission à la page JSP en charge de l'affichage des données */
-        this.getServletContext().getRequestDispatcher( "/afficherClient.jsp" ).forward( request, response );
+        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
     }
 }

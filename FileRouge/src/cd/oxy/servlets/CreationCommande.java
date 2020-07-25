@@ -20,7 +20,22 @@ import cd.oxy.beans.Commande;
  */
 @WebServlet( "/CreationCommande" )
 public class CreationCommande extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private static final long   serialVersionUID = 1L;
+
+    private static final String ATT_NOM          = "nomClient";
+    private static final String ATT_PRENOM       = "prenomClient";
+    private static final String ATT_ADRESSE      = "adresseClient";
+    private static final String ATT_TELEPHONE    = "telephoneClient";
+    private static final String ATT_EMAIL        = "emailClient";
+
+    private static final String ATT_DATE         = "dd/MM/yyyy HH:mm:ss";
+    private static final String ATT_MONTANT      = "montantCommande";
+
+    private static final String VUE              = "/afficherCommande.jsp";
+    private static final String MODEPAIEMENT     = "modePaiementCommande";
+    private static final String STATUTPAIEMENT   = "statutPaiementCommande";
+    private static final String MODELIVRAISON    = "modeLivraisonCommande";
+    private static final String STATUTLIVRAISON  = "statutLivraisonCommande";
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -32,30 +47,30 @@ public class CreationCommande extends HttpServlet {
          * Récupération des données saisies, envoyées en tant que paramètres de
          * la requête GET générée à la validation du formulaire
          */
-        String nom = request.getParameter( "nomClient" );
-        String prenom = request.getParameter( "prenomClient" );
-        String adresse = request.getParameter( "adresseClient" );
-        String telephone = request.getParameter( "telephoneClient" );
-        String email = request.getParameter( "emailClient" );
+        String nom = request.getParameter( ATT_NOM );
+        String prenom = request.getParameter( ATT_PRENOM );
+        String adresse = request.getParameter( ATT_ADRESSE );
+        String telephone = request.getParameter( ATT_TELEPHONE );
+        String email = request.getParameter( ATT_EMAIL );
 
         /* Récupération de la date courante */
         DateTime dt = new DateTime();
         /* Conversion de la date en String selon le format défini */
-        DateTimeFormatter formatter = DateTimeFormat.forPattern( "dd/MM/yyyy HH:mm:ss" );
+        DateTimeFormatter formatter = DateTimeFormat.forPattern( ATT_DATE );
         String date = dt.toString( formatter );
 
         double montant;
         try {
             /* Récupération du montant */
-            montant = Double.parseDouble( request.getParameter( "montantCommande" ) );
+            montant = Double.parseDouble( request.getParameter( ATT_MONTANT ) );
         } catch ( NumberFormatException e ) {
             /* Initialisation à -1 si le montant n'est pas un nombre correct */
             montant = -1;
         }
-        String modePaiement = request.getParameter( "modePaiementCommande" );
-        String statutPaiement = request.getParameter( "statutPaiementCommande" );
-        String modeLivraison = request.getParameter( "modeLivraisonCommande" );
-        String statutLivraison = request.getParameter( "statutLivraisonCommande" );
+        String modePaiement = request.getParameter( MODEPAIEMENT );
+        String statutPaiement = request.getParameter( STATUTPAIEMENT );
+        String modeLivraison = request.getParameter( MODELIVRAISON );
+        String statutLivraison = request.getParameter( STATUTLIVRAISON );
 
         String Message;
         /*
@@ -96,6 +111,6 @@ public class CreationCommande extends HttpServlet {
         request.setAttribute( "commande", commande );
 
         /* Transmission à la page JSP en charge de l'affichage des données */
-        this.getServletContext().getRequestDispatcher( "/afficherCommande.jsp" ).forward( request, response );
+        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
     }
 }
