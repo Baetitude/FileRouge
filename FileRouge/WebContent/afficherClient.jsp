@@ -6,20 +6,23 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Afficher Client</title>
-	    <link type="text/css" rel="stylesheet" href="inc/bootstrap-4.5.0-dist/css/bootstrap.min.css" />
-	  	<link type="text/css" rel="stylesheet" href="inc/bootstrap-4.5.0-dist/css/Forms.css" />
+	    <link type="text/css" rel="stylesheet" href="<c:url value="inc/bootstrap-4.5.0-dist/css/bootstrap.min.css"/>" />
+	  	<link type="text/css" rel="stylesheet" href="<c:url value="inc/bootstrap-4.5.0-dist/css/Forms.css"/>" />
 	</head>
 	<body>
 		<div class="container">
+		 <c:import url="/inc/menu.jsp"/>
 			<%-- Affichage de la chaîne "message" transmise par la servlet --%>
 			<p class="info h1">${ message }</p>
 			<%-- Puis affichage des données enregistrées dans le bean "client" transmis par la servlet --%>
-			<p class="h3"></p>
-			<p>Nom : ${ client.nom }</p>
-			<p>Prénom : ${ client.prenom }</p>
-			<p>Adresse : ${ client.adresse }</p>
-			<p>Numéro de téléphone : ${ client.telephone }</p>
-			<p>Email : ${ client.email }</p>
+			<p class="h3">Client</p>
+			<c:if test="${ !erreur }">
+				<p>Nom : <c:out value="${ client.nom }" /> </p>
+				<p>Prénom : <c:out value="${ client.prenom }" /></p>
+				<p>Adresse : <c:out value="${ client.adresse }" /></p>
+				<p>Numéro de téléphone : <c:out value="${ client.telephone }" /></p>
+				<p>Email : <c:out value="${ client.email }" /></p>
+			</c:if>
 		</div>
 	</body>
 </html>

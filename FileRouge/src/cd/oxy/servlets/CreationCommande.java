@@ -37,6 +37,8 @@ public class CreationCommande extends HttpServlet {
     private static final String MODELIVRAISON    = "modeLivraisonCommande";
     private static final String STATUTLIVRAISON  = "statutLivraisonCommande";
 
+    private static final String ATT_ERREUR       = "erreur";
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -73,6 +75,7 @@ public class CreationCommande extends HttpServlet {
         String statutLivraison = request.getParameter( STATUTLIVRAISON );
 
         String Message;
+        boolean erreur;
         /*
          * Initialisation du message à afficher : si un des champs obligatoires
          * du formulaire n'est pas renseigné, alors on affiche un message
@@ -82,8 +85,10 @@ public class CreationCommande extends HttpServlet {
                 montant == -1 || modePaiement.trim().isEmpty() || modeLivraison.trim().isEmpty() ) {
             Message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a"
                     + " href=\"creerCommande.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une commande.";
+            erreur = true;
         } else {
             Message = "Création Commande Avec Succes";
+            erreur = false;
         }
 
         /*
@@ -107,6 +112,7 @@ public class CreationCommande extends HttpServlet {
         commande.setStatutLivraison( statutLivraison );
 
         /* Ajout du bean et du message à l'objet requête */
+        request.setAttribute( ATT_ERREUR, erreur );
         request.setAttribute( "message", Message );
         request.setAttribute( "commande", commande );
 

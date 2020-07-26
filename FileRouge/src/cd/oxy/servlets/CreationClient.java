@@ -22,6 +22,7 @@ public class CreationClient extends HttpServlet {
     private static final String ATT_ADRESSE      = "adresseClient";
     private static final String ATT_TELEPHONE    = "telephoneClient";
     private static final String ATT_EMAIL        = "emailClient";
+    private static final String ATT_ERREUR       = "erreur";
 
     private static final String VUE              = "/afficherClient.jsp";
 
@@ -42,6 +43,7 @@ public class CreationClient extends HttpServlet {
         String email = request.getParameter( ATT_EMAIL );
 
         String Message;
+        boolean eRReur;
         /*
          * Initialisation du message à afficher : si un des champs obligatoires
          * du formulaire n'est pas renseigné, alors on affiche un message
@@ -50,8 +52,10 @@ public class CreationClient extends HttpServlet {
         if ( nom.trim().isEmpty() || adresse.trim().isEmpty() || telephone.trim().isEmpty() ) {
             Message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> "
                     + "<a href=\"creerClient.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un client.";
+            eRReur = true;
         } else {
             Message = "Création client Avec Succes";
+            eRReur = false;
         }
 
         /*
@@ -65,6 +69,7 @@ public class CreationClient extends HttpServlet {
         client.setEmail( email );
 
         /* Ajout du bean et du message à l'objet requête */
+        request.setAttribute( ATT_ERREUR, eRReur );
         request.setAttribute( "message", Message );
         request.setAttribute( "client", client );
 

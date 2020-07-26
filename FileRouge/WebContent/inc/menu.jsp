@@ -10,10 +10,10 @@
 		  
 		    <ul class="navbar-nav mr-auto">
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Création Client</a>
+		        <a class="nav-link" href='<c:url value="/creerClient.jsp"/>'>Création Client</a>
 		      </li>
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Création Commande</a>
+		        <a class="nav-link" href="<c:url value="/creerCommande.jsp"/>">Création Commande</a>
 		      </li>
 		    </ul>
 		    
