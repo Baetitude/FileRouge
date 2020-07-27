@@ -22,22 +22,12 @@ import cd.oxy.beans.Commande;
 public class CreationCommande extends HttpServlet {
     private static final long   serialVersionUID = 1L;
 
-    private static final String ATT_NOM          = "nomClient";
-    private static final String ATT_PRENOM       = "prenomClient";
-    private static final String ATT_ADRESSE      = "adresseClient";
-    private static final String ATT_TELEPHONE    = "telephoneClient";
-    private static final String ATT_EMAIL        = "emailClient";
-
-    private static final String ATT_DATE         = "dd/MM/yyyy HH:mm:ss";
-    private static final String ATT_MONTANT      = "montantCommande";
-
-    private static final String VUE              = "/afficherCommande.jsp";
-    private static final String MODEPAIEMENT     = "modePaiementCommande";
-    private static final String STATUTPAIEMENT   = "statutPaiementCommande";
-    private static final String MODELIVRAISON    = "modeLivraisonCommande";
-    private static final String STATUTLIVRAISON  = "statutLivraisonCommande";
+    private static final String VUE_FORMS        = "/WEB-INF/creerCommande.jsp";
+    private static final String VUE_DATA         = "/WEB-INF/afficherCommande.jsp";
 
     private static final String ATT_ERREUR       = "erreur";
+    private static final String ATT_MESSAGE      = "message";
+    private static final String ATT_COMMANDE     = "commande";
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -113,10 +103,17 @@ public class CreationCommande extends HttpServlet {
 
         /* Ajout du bean et du message à l'objet requête */
         request.setAttribute( ATT_ERREUR, erreur );
-        request.setAttribute( "message", Message );
-        request.setAttribute( "commande", commande );
+        request.setAttribute( ATT_MESSAGE, Message );
+        request.setAttribute( ATT_COMMANDE, commande );
 
         /* Transmission à la page JSP en charge de l'affichage des données */
-        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+        this.getServletContext().getRequestDispatcher( VUE_FORMS ).forward( request, response );
     }
+
+    @Override
+    protected void doPost( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        super.doPost( req, resp );
+    }
+
 }

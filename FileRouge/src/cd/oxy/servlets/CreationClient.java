@@ -17,14 +17,12 @@ import cd.oxy.beans.Client;
 public class CreationClient extends HttpServlet {
     private static final long   serialVersionUID = 1L;
 
-    private static final String ATT_NOM          = "nomClient";
-    private static final String ATT_PRENOM       = "prenomClient";
-    private static final String ATT_ADRESSE      = "adresseClient";
-    private static final String ATT_TELEPHONE    = "telephoneClient";
-    private static final String ATT_EMAIL        = "emailClient";
+    private static final String ATT_CLIENT       = "client";
+    private static final String ATT_MESSAGE      = "message";
     private static final String ATT_ERREUR       = "erreur";
 
-    private static final String VUE              = "/afficherClient.jsp";
+    private static final String VUE_FORMS        = "/WEB-INF/creerClient.jsp";
+    private static final String VUE_DATA         = "/WEB-INF/afficherClient.jsp";
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -70,10 +68,16 @@ public class CreationClient extends HttpServlet {
 
         /* Ajout du bean et du message à l'objet requête */
         request.setAttribute( ATT_ERREUR, eRReur );
-        request.setAttribute( "message", Message );
-        request.setAttribute( "client", client );
+        request.setAttribute( ATT_MESSAGE, Message );
+        request.setAttribute( ATT_CLIENT, client );
 
         /* Transmission à la page JSP en charge de l'affichage des données */
-        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+        this.getServletContext().getRequestDispatcher( VUE_FORMS ).forward( request, response );
+    }
+
+    @Override
+    protected void doPost( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        super.doPost( req, resp );
     }
 }
