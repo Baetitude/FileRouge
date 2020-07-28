@@ -7,6 +7,7 @@
         <meta charset="utf-8" />
         <title >Création d'un client</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="inc/bootstrap-4.5.0-dist/css/bootstrap.min.css"/>" />
+        <link type="text/css" rel="stylesheet" href="<c:url value="inc/bootstrap-4.5.0-dist/css/Forms.css"/>" />
     </head>
     <body>
 	<div class="container">
@@ -14,7 +15,7 @@
 	    <br>
 	    <div class="row">
 		    <div class="col-md-4">
-			    <form method="get" action="<c:url value="/creationClient"/>">
+			    <form method="post" action="<c:url value="/creationClient"/>">
 				    <fieldset>
 				        <legend class="h4">Informations client</legend>
 				        <c:import url="/inc/inc_client_form.jsp"/>
