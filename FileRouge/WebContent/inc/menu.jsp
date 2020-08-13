@@ -15,6 +15,12 @@
 		      <li class="nav-item active">
 		        <a class="nav-link" href="<c:url value="/creationCommande"/>">Création Commande</a>
 		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="<c:url value="/listerClients"/>">Liste des Clients</a>
+		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="<c:url value="/listerCommandes"/>">Liste des Commandes</a>
+		      </li>
 		    </ul>
 		    
 		  </div>

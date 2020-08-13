@@ -18,7 +18,34 @@
 					 <form method="post" action="<c:url value="/creationCommande"/>">
 						 <fieldset>
 							 <legend class="h4">Informations client</legend>
-							 <c:import url="/inc/inc_client_form.jsp"/>
+							 <%-- Si et seulement si la Map des clients en session n'est pas vide, alors on propose un choix à l'utilisateur --%>
+							 <c:if test="${ !empty sessionScope.clients }">
+							 	<label for="choixNouveauClient">Nouveau Client ? <span class="requis">*</span></label>
+							 	<input type="radio" id="choixNouveauClient" name="choixNouveauClient" value="nouveauClient" checked /> Oui
+							 	<input type="radio" id="choixNouveauClient" name="choixNouveauClient" value="ancientClient" /> Non <br>
+							 </c:if>
+							 
+							 <c:set var="client" value="${ commande.client }" scope="request"/>
+							 <div id="nouveauClient">
+							 	<c:import url="/inc/inc_client_form.jsp"/>
+							 </div>
+							 
+							 <%-- Si et seulement si la Map des clients en session n'est pas vide, alors on crée la liste déroulante --%>
+							 <c:if test="${ !empty sessionScope.clients }">
+							 	<div id="ancienClient">
+							 		<select name="listeClients" id="listeClients">
+							 			<option value="">Choisissez un client...</option>
+							 			<%-- Boucle sur la map des clients --%>
+							 			<c:forEach items="${ sessionScope.clients }" var="mapClients">
+							 				<%-- L'expression EL ${mapClients.value} permet de cibler l'objet Client stocké 
+							 				en tant que valeur dans la Map, et on cible ensuite simplement ses propriétés nom 
+							 				et prenom comme on le ferait avec n'importe quel bean. --%>
+							 				<option value="${ mapClients.value.nom }">${ mapClients.value.prenom }
+							 				${ mapClients.value.nom }</option>
+							 			</c:forEach>
+							 		</select>
+							 	</div>
+							 </c:if>
 					 	</fieldset>
 					 	
 						<fieldset>
@@ -55,5 +82,22 @@
 				</div>
 			</div>
 		</div><br>
+		<script src="<c:url value="/inc/bootstrap-4.5.0-dist/js/jquery.js"/>"></script>
+		<%-- Petite fonction jQuery permettant le remplacement de la première partie du formulaire par la liste déroulante, au clic sur le bouton radio. --%>
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				/* 1 - Au lancement de la page, on cache le bloc d'éléments du formulaire
+				correspondant aux clients existants */
+			$("div#ancienClient").hide();
+			/* 2 - Au clic sur un des deux boutons radio "choixNouveauClient", on affiche le
+			bloc d'éléments correspondant (nouveau ou ancien client) */
+			jQuery('input[name=choixNouveauClient]:radio').click(function(){
+				$("div#nouveauClient").hide();
+				$("div#ancientClient").hide();
+				var divId = jQuery(this).val();
+				$("div#"+divId).show();
+			});
+			});
+		</script>
 	</body>
 </html>
