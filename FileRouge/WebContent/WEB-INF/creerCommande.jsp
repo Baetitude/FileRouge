@@ -22,7 +22,7 @@
 							 <c:if test="${ !empty sessionScope.clients }">
 							 	<label for="choixNouveauClient">Nouveau Client ? <span class="requis">*</span></label>
 							 	<input type="radio" id="choixNouveauClient" name="choixNouveauClient" value="nouveauClient" checked /> Oui
-							 	<input type="radio" id="choixNouveauClient" name="choixNouveauClient" value="ancientClient" /> Non <br>
+							 	<input type="radio" id="choixNouveauClient" name="choixNouveauClient" value="ancienClient" /> Non <br>
 							 </c:if>
 							 
 							 <c:set var="client" value="${ commande.client }" scope="request"/>
@@ -84,7 +84,7 @@
 		</div><br>
 		<script src="<c:url value="/inc/bootstrap-4.5.0-dist/js/jquery.js"/>"></script>
 		<%-- Petite fonction jQuery permettant le remplacement de la première partie du formulaire par la liste déroulante, au clic sur le bouton radio. --%>
-		<script type="text/javascript">
+		<script>
 			jQuery(document).ready(function(){
 				/* 1 - Au lancement de la page, on cache le bloc d'éléments du formulaire
 				correspondant aux clients existants */
@@ -93,7 +93,7 @@
 			bloc d'éléments correspondant (nouveau ou ancien client) */
 			jQuery('input[name=choixNouveauClient]:radio').click(function(){
 				$("div#nouveauClient").hide();
-				$("div#ancientClient").hide();
+				$("div#ancienClient").hide();
 				var divId = jQuery(this).val();
 				$("div#"+divId).show();
 			});

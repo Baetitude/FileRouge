@@ -21,7 +21,7 @@ public class SuppressionClient extends HttpServlet {
     private static final long  serialVersionUID = 1L;
 
     public static final String PARAM_NOM_CLIENT = "nomClient";
-    public static final String SESSION_CLIENTS  = "client";
+    public static final String SESSION_CLIENTS  = "clients";
 
     public static final String VUE              = "/listerClients";
 

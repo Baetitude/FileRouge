@@ -30,11 +30,11 @@
 	</servlet>
 	<servlet>
 	 	<servlet-name>SuppressionClient</servlet-name>
-	 	<servlet-class>com.sdzee.tp.servlets.SuppressionClient</servlet-class>
+	 	<servlet-class>cd.oxy.servlets.SuppressionClient</servlet-class>
 	</servlet>
 	<servlet>
 	 	<servlet-name>SuppressionCommande</servlet-name>
-	 	<servlet-class>com.sdzee.tp.servlets.SuppressionCommande</servlet-class>
+	 	<servlet-class>cd.oxy.servlets.SuppressionCommande</servlet-class>
 	</servlet>
 	
 	<filter-mapping>
