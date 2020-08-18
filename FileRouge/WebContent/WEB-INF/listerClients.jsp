@@ -12,7 +12,6 @@
 <body>
 	<div class="container">
 		<c:import url="/inc/menu.jsp"/>
-		<div id="corps">
 			<c:choose>
 				<%-- Si aucun client n'existe en session, affichage d'un message par défaut. --%>
 				<c:when test="${ empty sessionScope.clients }">
@@ -20,18 +19,22 @@
 				</c:when>
 				<%-- Sinon, affichage du tableau. --%>
 				<c:otherwise>
-					<table>
-						<tr>
-							<th>Nom</th>
-							<th>Prénom</th>
-							<th>Adresse</th>
-							<th>Téléphone</th>
-							<th>Email</th>
-							<th class="action">Action</th>
-						</tr>
+					<table class="table table-striped table-sm">
+						<thead>
+							<tr>
+								<th>Nom</th>
+								<th>Prénom</th>
+								<th>Adresse</th>
+								<th>Téléphone</th>
+								<th>Email</th>
+								<th>Image</th>
+								<th class="action">Action</th>
+							</tr>
+						</thead>
 						<%-- Parcours de la Map des clients en session, et utilisation de l'objet varStatus. --%>
 						<c:forEach items="${ sessionScope.clients }" var="mapClients" varStatus="boucle">
 						<%-- Simple test de parité sur l'index de parcours, pour alterner la couleur de fond de chaque ligne du tableau. --%>
+						<tbody>
 						<tr class="${ boucle.index % 2 == 0 ? 'paire' : 'impair' }">
 						<%-- Affichage des propriétés du bean Client, qui est stocké en tant que valeur de l'entrée courante de la map --%>
 							<td><c:out value="${ mapClients.value.nom }"/></td>
@@ -39,6 +42,13 @@
 							<td><c:out value="${ mapClients.value.adresse }"/></td>
 							<td><c:out value="${ mapClients.value.telephone }"/></td>
 							<td><c:out value="${ mapClients.value.email }"/></td>
+							<td>
+								<%-- On ne construit et affiche un lien vers l'image que si elle existe. --%>
+								<c:if test="${ !empty mapClients.value.image }">
+ 									<c:set var="image"><c:out value="${ mapClients.value.image }"/></c:set>
+ 									<a href="<c:url value="/images/${ image }"/>">Voir</a>
+ 								</c:if>
+							</td>
 							<%-- Lien vers la servlet de suppression, avec passage du nom du client 
 							- c'està-dire la clé de la Map - en paramètre grâce à la balise <c:param/>. --%>
 							<td class="action">
@@ -47,11 +57,11 @@
 								</a>
 							</td>
 						</tr>
+						</tbody>
 						</c:forEach>
 					</table>
 				</c:otherwise>
 			</c:choose>
 		</div>
-	</div>
 </body>
 </html>

@@ -22,6 +22,7 @@ import cd.oxy.forms.CreationCommandeForms;
 public class CreationCommande extends HttpServlet {
     public static final long   serialVersionUID  = 1L;
 
+    public static final String CHEMIN            = "chemin";
     public static final String ATT_COMMANDE      = "commande";
     public static final String ATT_FORM          = "form";
     public static final String SESSION_CLIENTS   = "clients";
@@ -43,10 +44,17 @@ public class CreationCommande extends HttpServlet {
     @Override
     protected void doPost( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
+        /*
+         * Lecture du paramètre 'chemin' passé à la servlet via la déclaration
+         * dans le web.xml
+         */
+        String chemin = this.getServletConfig().getInitParameter( CHEMIN );
 
+        /* Préparation de l'objet formulaire */
         CreationCommandeForms form = new CreationCommandeForms();
 
-        Commande commande = form.nouveauCommande( request );
+        /* Traitement de la requête et récupération du bean en résultant */
+        Commande commande = form.nouveauCommande( request, chemin );
 
         request.setAttribute( ATT_FORM, form );
         request.setAttribute( ATT_COMMANDE, commande );

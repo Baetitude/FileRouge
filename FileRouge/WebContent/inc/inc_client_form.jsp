@@ -21,5 +21,9 @@
       <label for="emailClient">Adresse email</label>
       <input type="email" class="form-control form-control-sm" id="emailClient" name="emailClient" value="" size="20" maxlength="60" />
       <span class="info">${ form.erreurs['emailClient'] }</span>
+      
+      <label for="imageClient">Image</label>
+	  <input type="file" class="form-control form-control-sm" id="imageClient" name="imageClient" />
+      <span class="info">${form.erreurs['imageClient']}</span>
 <br>
 				    

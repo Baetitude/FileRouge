@@ -15,7 +15,7 @@
 		<br>
 		<div class="row">
 				<div class="col-md-4">
-					 <form method="post" action="<c:url value="/creationCommande"/>">
+					 <form method="post" action="<c:url value="/creationCommande"/>" enctype="multipart/form-data">
 						 <fieldset>
 							 <legend class="h4">Informations client</legend>
 							 <%-- Si et seulement si la Map des clients en session n'est pas vide, alors on propose un choix à l'utilisateur --%>
@@ -75,6 +75,8 @@
 						<input type="text" class="form-control form-control-sm" id="statutLivraisonCommande" name="statutLivraisonCommande" value="" size="20" maxlength="20" />
 						<span class="info">${ form.erreurs['statutLivraisonCommande'] }</span>
 						<br>
+						
+						<p class="info">${ form.resultat }</p>
 						</fieldset>
 						<input type="submit" class="btn btn-outline-primary btn-sm" value="     Valider     " />
 						<input type="reset" class="btn btn-outline-danger btn-sm"   value="Remettre à zéro" /> <br />

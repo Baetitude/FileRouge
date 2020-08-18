@@ -21,6 +21,7 @@
 			<p>Adresse : <c:out value="${ client.adresse }" /></p>
 			<p>Numéro de téléphone : <c:out value="${ client.telephone }" /></p>
 			<p>Email : <c:out value="${ client.email }" /></p>
+			<p>Email : <c:out value="${ client.image }" /></p>
 		</div>
 	</body>
 </html>

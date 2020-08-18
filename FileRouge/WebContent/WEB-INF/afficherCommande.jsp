@@ -24,6 +24,7 @@
 				<p>Adresse : <c:out value="${ commande.client.adresse }"/></p>
 				<p>Numéro de téléphone : <c:out value="${ commande.client.telephone }"/></p>
 				<p>Email : <c:out value="${ commande.client.email }"/></p>
+				<p>Email : <c:out value="${ commande.client.image }"/></p>
 			 
 			<p class="h3">Commande </p>
 				<p>Montant : <c:out value="${ commande.montant }"/> </p>

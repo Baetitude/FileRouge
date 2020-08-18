@@ -21,6 +21,7 @@ import cd.oxy.forms.CreationClientForms;
 public class CreationClient extends HttpServlet {
     private static final long   serialVersionUID = 1L;
 
+    public static final String  CHEMIN           = "chemin";
     public static final String  ATT_CLIENT       = "client";
     public static final String  ATT_FORMS        = "form";
     public static final String  SESSION_CLIENTS  = "clients";
@@ -41,6 +42,12 @@ public class CreationClient extends HttpServlet {
     @Override
     protected void doPost( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
+        /*
+         * Lecture du paramètre 'chemin' passé à la servlet via la déclaration
+         * dans le web.xml
+         */
+        String chemin = this.getServletConfig().getInitParameter( CHEMIN );
+
         /* Préparation de l'objet formulaire */
         CreationClientForms form = new CreationClientForms();
 
@@ -48,7 +55,7 @@ public class CreationClient extends HttpServlet {
          * Appel au traitement et à la validation de la requête, et récupération
          * du bean en résultant
          */
-        Client client = form.nouveauClient( request );
+        Client client = form.nouveauClient( request, chemin );
 
         /* Stockage du formulaire et du bean dans l'objet request */
         request.setAttribute( ATT_CLIENT, client );

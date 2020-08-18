@@ -7,8 +7,17 @@ public class Client {
     private String adresse;
     private String telephone;
     private String email;
+    private String image;
 
     // getter and setters
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage( String image ) {
+        this.image = image;
+    }
+
     public String getNom() {
         return nom;
     }

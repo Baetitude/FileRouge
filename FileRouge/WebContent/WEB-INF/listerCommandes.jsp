@@ -12,7 +12,6 @@
 <body>
 	<div class="container">
 		<c:import url="/inc/menu.jsp"/>
-		<div id="corps">
 			<c:choose>
 				<%-- Si aucune commande n'existe en session, affichage d'un message par défaut. --%>
 				<c:when test="${ empty sessionScope.commandes }">
@@ -20,21 +19,24 @@
 				</c:when>
 				<%-- Sinon, affichage du tableau. --%>
 				<c:otherwise>
-					<table>
-						<tr>
-							<th>Client</th>
-							<th>Date</th>
-							<th>Montant</th>
-							<th>Mode de Paiement</th>
-							<th>Statut de Paiement</th>
-							<th>Mode de Livraison</th>
-							<th>Statut de Livraison</th>
-							<th class="action">Action</th>
-						</tr>
+					<table class="table table-striped table-sm">
+						<thead>
+							<tr>
+								<th>Client</th>
+								<th>Date</th>
+								<th>Montant</th>
+								<th>Mode de Paiement</th>
+								<th>Statut de Paiement</th>
+								<th>Mode de Livraison</th>
+								<th>Statut de Livraison</th>
+								<th class="action">Action</th>
+							</tr>
+						</thead>
 						<%-- Parcours de la Map des commandes en session, et utilisation de l'objet varStatus. --%>
 						<c:forEach items="${ sessionScope.commandes }" var="mapCommandes" varStatus="boucle">
 							<%-- Simple test de parité sur l'index de parcours, pour alterner la couleur de fond 
 							de chaque ligne du tableau. --%>
+							<tbody>
 							<tr class="${ boucle.index % 2 == 0 ? 'pair' : 'impair' }">
 							<%-- Affichage des propriétés du bean Commande, qui est stocké en tant que 
 							valeur de l'entrée courante de la map --%>
@@ -53,11 +55,11 @@
 									</a>
 								</td>
 							</tr>
+							</tbody>
 						</c:forEach>
 					</table>
 				</c:otherwise>
 			</c:choose>
 		</div>
-	</div>
 </body>
 </html>
