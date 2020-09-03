@@ -17,7 +17,7 @@
 		    <div class="col-md-4">
 			    <form method="post" action="<c:url value="/creationClient"/>" enctype="multipart/form-data">
 				    <fieldset>
-				        <legend class="h4">Informations client</legend>
+				        <legend class="h4"> Informations client </legend>
 				        <c:import url="/inc/inc_client_form.jsp"/>
 				    </fieldset>
 				    	<p class="text-danger">${ form.resultat }</p>

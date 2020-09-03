@@ -1,7 +1,11 @@
 package cd.oxy.beans;
 
-public class Client {
+import java.io.Serializable;
+
+@SuppressWarnings( "serial" )
+public class Client implements Serializable {
     // Propriete
+    private Long   id;
     private String nom;
     private String prenom;
     private String adresse;
@@ -10,12 +14,12 @@ public class Client {
     private String image;
 
     // getter and setters
-    public String getImage() {
-        return image;
+    public Long getId() {
+        return id;
     }
 
-    public void setImage( String image ) {
-        this.image = image;
+    public void setId( Long id ) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -57,4 +61,13 @@ public class Client {
     public void setEmail( String email ) {
         this.email = email;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage( String image ) {
+        this.image = image;
+    }
+
 }

@@ -1,16 +1,30 @@
 package cd.oxy.beans;
 
-public class Commande {
+import java.io.Serializable;
+
+import org.joda.time.DateTime;
+
+@SuppressWarnings( "serial" )
+public class Commande implements Serializable {
     // Propriete
-    private Client client;
-    private String date;
-    private Double montant;
-    private String modePaiement;
-    private String statutPaiement;
-    private String modeLivraison;
-    private String statutLivraison;
+    private Long     id;
+    private Client   client;
+    private DateTime date;
+    private Double   montant;
+    private String   modePaiement;
+    private String   statutPaiement;
+    private String   modeLivraison;
+    private String   statutLivraison;
 
     // getter and setter
+    public Long getId() {
+        return id;
+    }
+
+    public void setId( Long id ) {
+        this.id = id;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -19,11 +33,11 @@ public class Commande {
         this.client = client;
     }
 
-    public String getDate() {
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate( String date ) {
+    public void setDate( DateTime date ) {
         this.date = date;
     }
 
